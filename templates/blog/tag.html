@@ -1,0 +1,70 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="col-md-8">
+        <div class="blog-section">
+            <div class="arclist" style="margin-top: -5px;">
+                <h4 class="litter-title" style="text-align: center;margin-top: 5px;">
+                    <a href="">
+                        <i class="glyphicon glyphicon-apple"></i>
+                        标签：{{ tag }}
+                    </a>
+                </h4>
+                <!--列表开始-->
+                <ul>
+                    {% load paginate_tags %}
+                    {% paginate article_list 8 %}
+                    {% for article in article_list %}
+                    <li>
+                        <div class="arcimg">
+                            <img src="{{  MEDIA_URL }}{{ article.picture }}" alt="{{ article.title }}" title="{{ article.title }}"/>
+                        </div>
+                        <div class="arc-right">
+                            <h4 class="blue-text"><a href="{% url 'app:detail' pk=article.id %}" title="{{ article.title }}">{{ article.title }}</a></h4>
+                            <p>{{ article.abstract }}</p>
+                            <ul>
+                                <li>
+                                    <a title="{{ article.author }}{{ article.pub_date }} 发表 ">
+                                        <i class="glyphicon glyphicon-time"></i>
+                                        {{ article.pub_date }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="作者： {{ article.author }}">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        {{ article.author }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="已有 {{ article.comment }} 条评论">
+                                        <i class="glyphicon glyphicon-comment"></i>
+                                        {{ article.comment }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a title="已有 {{ article.view }} 次浏览">
+                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                        {{ article.view }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="查看分类">
+                                        <i class="glyphicon glyphicon-list"></i>
+                                        {{ article.category }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <!--列表结束-->
+
+                <!--分页-->
+                {% include 'blog/pagination.html' %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

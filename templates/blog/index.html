@@ -1,0 +1,153 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="col-md-8">
+        <div class="blog-section">
+
+            <!-- bootstrap 轮播图 -->
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="{% static 'images/slide1.jpg' %}" alt="First slide">
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'images/slide2.jpg' %}" alt="Second slide">
+                    </div>
+                    <div class="item">
+                        <img src="{% static 'images/slide3.jpg' %}" alt="Third slide">
+                    </div>
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel"
+                    data-slide="prev">&lsaquo;
+                </a>
+                <a class="carousel-control right" href="#myCarousel"
+                    data-slide="next">&rsaquo;
+                </a>
+            </div>
+
+
+            <div class="arclist">
+                <h4 class="litter-title">
+                    <a href="">
+                        <i class="glyphicon glyphicon-leaf"></i>
+                        最新文章
+                        <small>New Article</small>
+                    </a>
+                </h4>
+                <!--列表开始-->
+                <ul>
+                    {% for article in article_list %}
+                    <li>
+                        <div class="arcimg">
+                            <img src="{{  MEDIA_URL }}{{ article.picture }}" alt="{{ article.title }}" title="{{ article.title }}"/>
+                        </div>
+                        <div class="arc-right">
+                            <h4 class="blue-text"><a href="{% url 'app:detail' pk=article.id %}" title="{{ article.title }}">{{ article.title }}</a></h4>
+                            <p>{{ article.abstract }}</p>
+                            <ul>
+                                <li>
+                                    <a title="{{ article.author }}{{ article.pub_date }} 发表 ">
+                                        <i class="glyphicon glyphicon-time"></i>
+                                        {{ article.pub_date }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="作者： {{ article.author }}">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        {{ article.author }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="已有 {{ article.comment }} 条评论">
+                                        <i class="glyphicon glyphicon-comment"></i>
+                                        {{ article.comment }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a title="已有 {{ article.view }} 次浏览">
+                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                        {{ article.view }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="查看分类">
+                                        <i class="glyphicon glyphicon-list"></i>
+                                        {{ article.category }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <!--列表结束-->
+            </div>
+
+            <div class="arclist">
+                <h4 class="litter-title">
+                    <a href="">
+                        <i class="glyphicon glyphicon-fire"></i>
+                        最热文章
+                        <small>New Article</small>
+                    </a>
+                </h4>
+                <!--列表开始-->
+                <ul>
+                    {% for article in article_rank %}
+                    <li>
+                        <div class="arcimg">
+                            <img src="{{  MEDIA_URL }}{{ article.picture }}" alt="{{ article.title }}" title="{{ article.title }}"/>
+                        </div>
+                        <div class="arc-right">
+                            <h4 class="blue-text"><a href="{% url 'app:detail' pk=article.id %}" title="{{ article.title }}">{{ article.title }}</a></h4>
+                            <p>{{ article.abstrct }}</p>
+                            <ul>
+                                <li>
+                                    <a title="{{ article.author }}{{ article.pub_date }} 发表 ">
+                                        <i class="glyphicon glyphicon-time"></i>
+                                        {{ article.pub_date }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="作者： {{ article.author }}">
+                                        <i class="glyphicon glyphicon-user"></i>
+                                        {{ article.author }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="已有 {{ article.comment }} 条评论">
+                                        <i class="glyphicon glyphicon-comment"></i>
+                                        {{ article.comment }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a title="已有 {{ article.view }} 次浏览">
+                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                        {{ article.view }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" title="查看分类">
+                                        <i class="glyphicon glyphicon-list"></i>
+                                        {{ article.category }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <!--列表结束-->
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+
+<div class="col-md-4">
+    <div class="blog-section myaside" style="animation: suoxiao 0.8s;">
+
+        <!--最新更新-->
+        <div class="clos-new">
+            <h4 class="index-title"><i class="glyphicon glyphicon-bulb"></i>最新资讯
+                <small>Latest News</small>
+            </h4>
+            <ul>
+                <li>
+                    <i class="glyphicon glyphicon-cloud"></i>
+                    <iframe id="tianqi" scrolling="no" frameborder="0" allowtransparency="true"
+                            src="http://i.tianqi.com/index.php?c=code&a=getcode&id=34&h=25&w=280"></iframe>
+                </li>
+
+                <li>
+                    <i class="glyphicon glyphicon-calendar"></i>历史今天：<br /><br />
+                    <iframe src="http://www.todayonhistory.com/code/6.html?w=250&h=20&bky=dotted&bks=0&fs=14&fc=#565656&hg=14&ie=0&xhx=none&sd=300&px=3&len=0&sk=1&n=0"
+                                       width="250" height="15" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="blog-section myaside" style="margin-top:25px;">
+        <!--文章排行-->
+        <div class="article-rank">
+            <h4 class="index-title" style="margin-bottom: 2px;"><i class="el-tags"></i>文章排行
+                <small>Article ranking</small>
+            </h4>
+            <ul>
+
+                {% for article in article_rank %}
+                    <li>
+                        <span class="rank-circle">{{ forloop.counter }}</span>
+                        <a href="{% url 'app:detail' pk=article.id %}" title="{{ article.title }}">
+                            {{ article.title|truncatechars:'20' }}
+                        </a>
+                        <span style="float:right;margin-right:10px;color:#0181da;">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                            {{ article.view }}
+                        </span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="blog-section myaside" style="margin-top:25px;">
+        <!--标签-->
+        <div class="cloud">
+            <h4 class="index-title"><i class="el-tags"></i>标签云
+                <small>Tags Clouds</small>
+            </h4>
+            <ul>
+                {% for tag in tag_list %}
+                    <li><a href="{% url 'app:tag' name=tag.tag_name %}" title="标签：{{ tag.tag_name }} ">{{ tag.tag_name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="blog-section myaside" style="margin-top:25px;">
+        <!--友情链接-->
+        <div class="cloud">
+            <h4 class="index-title"><i class="el-tags"></i>友情链接
+                <small>Friend Links</small>
+            </h4>
+            <ul>
+                <li><a href="http://brucedone.com" title="大鱼的鱼塘" target="_blank">大鱼的鱼塘</a></li>
+                <li><a href="http://www.spiderpy.cn" title="烂笔头" target="_blank">烂笔头</a></li>
+                <li><a href="http://www.songluyi.com" title="灯塔水母" target="_blank">灯塔水母</a></li>
+                <li><a href="https://www.urlteam.org" title="URL-team" target="_blank">URL-team</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

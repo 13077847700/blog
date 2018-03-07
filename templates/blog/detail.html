@@ -1,0 +1,54 @@
+{% extends 'blog/base.html' %}
+{% load staticfiles %}
+{% block content %}
+
+    <div class="col-md-8">
+        <div class="blog-section">
+            <div class="arclist">
+                <div class="detail-title">
+                    <a href="">
+                        <i class="glyphicon glyphicon-leaf"></i>
+                        &nbsp;{{ article.title }}
+                    </a>
+                </div>
+                <div class="detail-remark">
+                    <ul>
+                        <li>
+                            <a title="{{ article.author }}发表于{{ article.date_time }}">
+                                <i class="glyphicon glyphicon-time"></i>
+                                <time>{{ article.pub_date }}</time>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <i class="glyphicon glyphicon-user"></i>
+                                {{ article.author }}
+                            </a>
+                        </li>
+                        <li>
+                            <a title="转到评论">
+                                <i class="glyphicon glyphicon-comment"></i>
+                                {{ article.comment }}条
+                            </a>
+                        </li>
+                        <li>
+                            <a title="已有 {{ article.view }} 次浏览">
+                                <i class="glyphicon glyphicon-eye-open"></i>
+                                {{ article.view }}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!--文章正文-->
+                <div class="detail-content">
+                    {{ article.content|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+<!-- jQuery -->
+<script src="{% static 'ckeditor/ckeditor/ckeditor.js' %}"></script>
